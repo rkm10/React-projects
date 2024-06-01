@@ -1,0 +1,221 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+.spinner {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      width: 100vw;
+      height: 100vh;
+}
+
+.spinner:before {
+      transform: rotateX(60deg) rotateY(45deg) rotateZ(45deg);
+      animation: 750ms rotateBefore infinite linear reverse;
+}
+
+.spinner:after {
+      transform: rotateX(240deg) rotateY(45deg) rotateZ(45deg);
+      animation: 750ms rotateAfter infinite linear;
+}
+
+.spinner:before,
+.spinner:after {
+      box-sizing: border-box;
+      content: '';
+      display: block;
+      position: absolute;
+      margin-top: -5em;
+      margin-left: -5em;
+      width: 10em;
+      height: 10em;
+      transform-style: preserve-3d;
+      transform-origin: 50%;
+      transform: rotateY(50%);
+      perspective-origin: 50% 50%;
+      perspective: 340px;
+      background-size: 10em 10em;
+      background-image: url(data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0iVVRGLTgiIHN0YW5kYWxvbmU9Im5vIj8+Cjxzdmcgd2lkdGg9IjI2NnB4IiBoZWlnaHQ9IjI5N3B4IiB2aWV3Qm94PSIwIDAgMjY2IDI5NyIgdmVyc2lvbj0iMS4xIiB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHhtbG5zOnhsaW5rPSJodHRwOi8vd3d3LnczLm9yZy8xOTk5L3hsaW5rIiB4bWxuczpza2V0Y2g9Imh0dHA6Ly93d3cuYm9oZW1pYW5jb2RpbmcuY29tL3NrZXRjaC9ucyI+CiAgICA8dGl0bGU+c3Bpbm5lcjwvdGl0bGU+CiAgICA8ZGVzY3JpcHRpb24+Q3JlYXRlZCB3aXRoIFNrZXRjaCAoaHR0cDovL3d3dy5ib2hlbWlhbmNvZGluZy5jb20vc2tldGNoKTwvZGVzY3JpcHRpb24+CiAgICA8ZGVmcz48L2RlZnM+CiAgICA8ZyBpZD0iUGFnZS0xIiBzdHJva2U9Im5vbmUiIHN0cm9rZS13aWR0aD0iMSIgZmlsbD0ibm9uZSIgZmlsbC1ydWxlPSJldmVub2RkIiBza2V0Y2g6dHlwZT0iTVNQYWdlIj4KICAgICAgICA8cGF0aCBkPSJNMTcxLjUwNzgxMywzLjI1MDAwMDM4IEMyMjYuMjA4MTgzLDEyLjg1NzcxMTEgMjk3LjExMjcyMiw3MS40OTEyODIzIDI1MC44OTU1OTksMTA4LjQxMDE1NSBDMjE2LjU4MjAyNCwxMzUuODIwMzEgMTg2LjUyODQwNSw5Ny4wNjI0OTY0IDE1Ni44MDA3NzQsODUuNzczNDM0NiBDMTI3LjA3MzE0Myw3NC40ODQzNzIxIDc2Ljg4ODQ2MzIsODQuMjE2MTQ2MiA2MC4xMjg5MDY1LDEwOC40MTAxNTMgQy0xNS45ODA0Njg1LDIxOC4yODEyNDcgMTQ1LjI3NzM0NCwyOTYuNjY3OTY4IDE0NS4yNzczNDQsMjk2LjY2Nzk2OCBDMTQ1LjI3NzM0NCwyOTYuNjY3OTY4IC0yNS40NDkyMTg3LDI1Ny4yNDIxOTggMy4zOTg0Mzc1LDEwOC40MTAxNTUgQzE2LjMwNzA2NjEsNDEuODExNDE3NCA4NC43Mjc1ODI5LC0xMS45OTIyOTg1IDE3MS41MDc4MTMsMy4yNTAwMDAzOCBaIiBpZD0iUGF0aC0xIiBmaWxsPSIjMDAwMDAwIiBza2V0Y2g6dHlwZT0iTVNTaGFwZUdyb3VwIj48L3BhdGg+CiAgICA8L2c+Cjwvc3ZnPg==);
+}
+
+/* sitNSpin.less */
+@keyframes rotateBefore {
+      from {
+            transform: rotateX(60deg) rotateY(45deg) rotateZ(0deg);
+      }
+
+      to {
+            transform: rotateX(60deg) rotateY(45deg) rotateZ(-360deg);
+      }
+}
+
+@keyframes rotateAfter {
+      from {
+            transform: rotateX(240deg) rotateY(45deg) rotateZ(0deg);
+      }
+
+      to {
+            transform: rotateX(240deg) rotateY(45deg) rotateZ(360deg);
+      }
+}
+
+
+/* manga */
+
+.manga-loader {
+      width: 48px;
+      height: 48px;
+      background: #FF3D00;
+      display: block;
+      margin: 20px auto;
+      position: absolute;
+      box-sizing: border-box;
+      animation: rotationBack 1s ease-in-out infinite reverse;
+      top: 40%;
+      left: 50%;
+}
+
+.manga-loader::before {
+      content: '';
+      box-sizing: border-box;
+      left: 0;
+      top: 0;
+      transform: rotate(45deg);
+      position: absolute;
+      width: 48px;
+      height: 48px;
+      background: #FF3D00;
+      box-shadow: 0 0 5px rgba(0, 0, 0, 0.15);
+}
+
+.manga-loader::after {
+      content: '';
+      box-sizing: border-box;
+      width: 32px;
+      height: 32px;
+      border-radius: 50%;
+      position: absolute;
+      left: 50%;
+      top: 50%;
+      background: #FFF;
+      transform: translate(-50%, -50%);
+      box-shadow: 0 0 5px rgba(0, 0, 0, 0.15);
+}
+
+@keyframes rotationBack {
+      0% {
+            transform: rotate(0deg);
+      }
+
+      100% {
+            transform: rotate(-360deg);
+      }
+}
+
+
+/* manga ends  */
+
+
+
+.top-anime-loader {
+      width: 96px;
+      box-sizing: content-box;
+      height: 48px;
+      background: #FFF;
+      border-color: #de3500;
+      border-style: solid;
+      border-width: 2px 2px 50px 2px;
+      border-radius: 100%;
+      position: absolute;
+      top: 40%;
+      left: 50%;
+      animation: 3s yinYang linear infinite;
+}
+
+.top-anime-loader:before {
+      content: "";
+      position: absolute;
+      top: 50%;
+      left: 0;
+      background: #FFF;
+      border: 18px solid #de3500;
+      border-radius: 100%;
+      width: 12px;
+      height: 12px;
+      box-sizing: content-box;
+}
+
+.top-anime-loader:after {
+      content: "";
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      background: #de3500;
+      border: 18px solid #FFF;
+      border-radius: 100%;
+      width: 12px;
+      height: 12px;
+      box-sizing: content-box;
+}
+
+@keyframes yinYang {
+      100% {
+            transform: rotate(360deg)
+      }
+}
+
+
+/* top-anime ends*/
+
+
+.loader {
+      position: absolute;
+      top: 40%;
+      left: 50%;
+      width: 164px;
+      height: 164px;
+      border-radius: 50%;
+      animation: rotate 0.75s linear infinite;
+}
+
+.loader::before {
+      content: '';
+      position: absolute;
+      width: 20px;
+      height: 40px;
+      border: 1px solid #FF3D00;
+      border-width: 12px 2px 7px;
+      border-radius: 2px 2px 1px 1px;
+      box-sizing: border-box;
+      transform: rotate(45deg) translate(24px, -10px);
+      background-image: linear-gradient(#FF3D00 20px, transparent 0),
+            linear-gradient(#FF3D00 30px, transparent 0),
+            linear-gradient(#FF3D00 30px, transparent 0);
+      background-size: 10px 12px, 1px 30px, 1px 30px;
+      background-repeat: no-repeat;
+      background-position: center, 12px 0px, 3px 0px;
+}
+
+.loader::after {
+      content: '';
+      position: absolute;
+      height: 4px;
+      width: 4px;
+      left: 20px;
+      top: 47px;
+      border-radius: 50%;
+      color: #Fff;
+      box-shadow: -4px 7px 2px, -7px 16px 3px 1px,
+            -11px 24px 4px 1px, -6px 24px 4px 1px,
+            -14px 35px 6px 2px, -5px 36px 8px 2px,
+            -5px 45px 8px 2px, -14px 49px 8px 2px,
+            6px 60px 11px 1px, -11px 66px 11px 1px,
+            11px 75px 13px, -1px 82px 15px;
+}
+
+@keyframes rotate {
+      to {
+            transform: rotate(360deg)
+      }
+}

@@ -1,0 +1,46 @@
+.container {
+      display: flex;
+      align-items: center;
+      height: 100vh;
+      justify-content: center;
+      flex-direction: column;
+}
+
+.output {
+      outline: none;
+      border: none;
+      width: 320px;
+      height: 70px;
+      font-size: 32px;
+      padding: 0px 2px;
+      background: #333333;
+      border-top-left-radius: 6px;
+      border-top-right-radius: 6px;
+      color: white;
+      text-align: right;
+}
+
+button {
+      width: 81px;
+      height: 90px;
+      font-size: 26px;
+      cursor: pointer;
+      border: none;
+      border-top: 1px solid black;
+      border-right: 1px solid black;
+
+}
+
+.digit:hover {
+      background-color: #ffff;
+}
+
+.operator:hover {
+      background-color: #ffff;
+}
+
+.operator {
+      border-right: none;
+      background-color: #ffa437;
+      color: #fff;
+}
