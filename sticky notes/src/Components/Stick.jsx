@@ -55,7 +55,7 @@ export default function Sticky() {
                   updateInput("");
             }
       };
-      const arr = ["red", "purple", "yellow", "green"]
+      const arr = ["red", "purple", "yellow", "green", "white", "black", "brown", "wheat"]
 
       // const color = document.getElementById(".list-group-item")
 
@@ -90,8 +90,7 @@ export default function Sticky() {
                                                             }}>
                                                                   {arr.map((color) => (
                                                                         <option value={color}>{color}</option>
-                                                                  )
-                                                                  )}
+                                                                  ))}
 
 
                                                             </select>
