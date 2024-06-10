@@ -1,0 +1,28 @@
+{
+  "Data": [
+    {
+      "id": 1,
+      "expensedetails": "mike",
+      "amount": 13231,
+      "date": "2022-02-02",
+      "time": "3:56:33 PM",
+      "type": "green"
+    },
+    {
+      "id": 2,
+      "expensedetails": "mike",
+      "amount": -1331,
+      "date": "2022-02-02",
+      "time": "3:56:33 PM",
+      "type": "red"
+    },
+    {
+      "id": 3,
+      "expensedetails": "mike",
+      "amount": 13231,
+      "date": "2022-02-02",
+      "time": "3:56:33 PM",
+      "type": "green"
+    }
+  ]
+}
