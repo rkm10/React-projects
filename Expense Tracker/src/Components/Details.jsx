@@ -1,31 +1,28 @@
-export default function Details(props) {
+import { useContext } from 'react';
+import { FilteredDataContext } from './ExpenseHistory';
+
+export default function Details() {
+      const { filteredData, deleteData } = useContext(FilteredDataContext);
+
       return (
             <>
-                  <div className="Expense-details-container-green" id="expense-details">
-                        <div id="green-div"></div>
-                        <div className="Expense-details-card">
-                              <h1>Account balance</h1>
-                              <h2>$89,400</h2>
-                              <p>6/10/2024, 3:56:40 PM</p>
-                        </div>
-                        <button className="btn btn-sm btn-error">💣</button>
-                  </div>
-                  {
-                        props.data.map((item) => {
-                              return (
-                                    <div className="Expense-details-container-red" id="expense-details">
-                                          <div id="red-div"></div>
-                                          <div className="Expense-details-card">
-                                                <h1>Account balance</h1>
-                                                <h2>-$89,400</h2>
-                                                <p>6/10/2024, 3:56:40 PM</p>
-                                          </div>
-                                          <button className="btn btn-sm btn-error">💣</button>
-                                    </div>
-                              )
-                        })
-                  }
+                  {filteredData && filteredData.map((item) => {
+                        const isIncome = item.amount > 0;
+                        const containerClass = isIncome ? 'Expense-details-container-green' : 'Expense-details-container-red';
+                        const divClass = isIncome ? 'green-div' : 'red-div';
 
+                        return (
+                              <div className={containerClass} id="expense-details" key={item.id}>
+                                    <div id={divClass}></div>
+                                    <div className="Expense-details-card">
+                                          <h1>{item.expensedetails}</h1>
+                                          <h2>₹ {item.amount}</h2>
+                                          <p>{item.date}, {item.time}</p>
+                                    </div>
+                                    <button className="btn btn-sm btn-error" onClick={() => deleteData(item.id)}>💣</button>
+                              </div>
+                        );
+                  })}
             </>
-      )
+      );
 }
