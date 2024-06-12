@@ -18,7 +18,9 @@ export default function ExpenseHistory() {
             <FilteredDataContext.Provider value={{ filteredTransactions, deleteData }}>
                   <div className="flex card w-5/12 shadow-xl items-center gap-3 py-5 border-2 border-white" style={{ height: "60vh" }}>
                         <h1 className="card-title mb-6">Transaction History</h1>
-                        <input type="text" placeholder="Type here" className="input input-bordered input-primary w-full max-w-xs" value={searchQuery}
+                        <input class="placeholder:italic placeholder:text-slate-400 block bg-white w-full border border-slate-300 rounded-md py-2 pl-9 pr-3 
+                        shadow-sm focus:outline-none focus:border-sky-500 focus:ring-sky-500 focus:ring-1 sm:text-sm w-96 mb-7 text-black font-family: italic font-semibold"
+                              placeholder="Search for anything..." type="text" name="search" alue={searchQuery}
                               onChange={(e) => setSearchQuery(e.target.value)} />
 
                         <div className="w-full overflow-y-scroll overflow-x-hidden px-5" style={{ height: "100vh" }}>

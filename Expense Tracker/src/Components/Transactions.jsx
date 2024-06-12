@@ -8,10 +8,10 @@ export default function Transactions() {
       const totalExpense = data.reduce((total, item) => total + (Number(item.amount) < 0 ? Number(item.amount) : 0), 0);
 
       return (
-            <div className="stats text-primary-content my-5">
+            <div className="stats bg-primary text-primary-content my-5">
                   <div className="stat" onClick={() => handleFilterChange({ target: { value: "Income" } })}>
                         <div className="stat-title text-white">Total Income</div>
-                        <div className="stat-value text-green-400">₹ {totalIncome}</div>
+                        <div className="stat-value text-green-600">₹ {totalIncome}</div>
                   </div>
                   <div className="stat" onClick={() => handleFilterChange({ target: { value: "Expense" } })}>
                         <div className="stat-title text-white">Total Expenses</div>
