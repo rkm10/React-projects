@@ -1,18 +1,18 @@
 {
   "Data": [
     {
-      "id": "351a",
-      "expensedetails": "new expense",
-      "amount": "13211",
-      "date": "6/11/2024",
-      "time": "4:42:19 PM"
+      "id": "c8be",
+      "expensedetails": "new details",
+      "amount": "50162",
+      "date": "6/12/2024",
+      "time": "2:12:40 PM"
     },
     {
-      "id": "57e2",
-      "expensedetails": "new expense",
-      "amount": "-12831",
-      "date": "6/11/2024",
-      "time": "6:04:29 PM"
+      "id": "4c9f",
+      "expensedetails": "rent",
+      "amount": "-12000",
+      "date": "6/12/2024",
+      "time": "3:05:57 PM"
     }
   ]
 }

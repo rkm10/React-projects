@@ -2,11 +2,11 @@ import { useContext } from 'react';
 import { FilteredDataContext } from './ExpenseHistory';
 
 export default function Details() {
-      const { filteredData, deleteData } = useContext(FilteredDataContext);
+      const { filteredTransactions, deleteData } = useContext(FilteredDataContext);
 
       return (
             <>
-                  {filteredData && filteredData.map((item) => {
+                  {filteredTransactions && filteredTransactions.map((item) => {
                         const isIncome = item.amount > 0;
                         const containerClass = isIncome ? 'Expense-details-container-green' : 'Expense-details-container-red';
                         const divClass = isIncome ? 'green-div' : 'red-div';

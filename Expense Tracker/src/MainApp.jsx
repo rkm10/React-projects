@@ -1,12 +1,30 @@
-import { useState, useEffect, createContext } from 'react';
+import { useState, useEffect, createContext, useReducer } from 'react';
 import ExpenseHistory from './Components/ExpenseHistory';
 import Form from './Components/Form';
 import axios from 'axios';
 
 export const ExpenseTrackerContext = createContext();
 
+const initialState = {
+      filter: "All",
+      data: [],
+};
+
+const filterReducer = (state, action) => {
+      switch (action.type) {
+            case "SET_FILTER":
+                  return { ...state, filter: action.payload };
+            case "SET_DATA":
+                  return { ...state, data: action.payload };
+            default:
+                  return state;
+      }
+};
+
 function MainApp() {
       const [data, setData] = useState([]);
+      const [state, dispatch] = useReducer(filterReducer, initialState);
+
       const url = "http://localhost:3000/Data";
 
       useEffect(() => {
@@ -17,6 +35,7 @@ function MainApp() {
             axios.get(url)
                   .then((res) => {
                         setData(res.data);
+                        dispatch({ type: "SET_DATA", payload: res.data });
                   })
                   .catch((err) => {
                         console.log(err);
@@ -46,14 +65,29 @@ function MainApp() {
                   });
       };
 
-      const totalBalance = data.reduce((total, item) => total + Number(item.amount), 0);
+      const handleFilterChange = (e) => {
+            dispatch({ type: "SET_FILTER", payload: e.target.value });
+      };
+
+      const filteredData = state.data.filter((item) => {
+            if (state.filter === "All") {
+                  return true;
+            } else if (state.filter === "Income") {
+                  return item.amount > 0;
+            } else if (state.filter === "Expense") {
+                  return item.amount < 0;
+            } else {
+                  return true;
+            }
+      });
+
+      const totalBalance = state.data.reduce((total, item) => total + Number(item.amount), 0);
 
       return (
-            <ExpenseTrackerContext.Provider value={{ data, deleteData, addData }}>
+            <ExpenseTrackerContext.Provider value={{ data, filteredData, deleteData, addData, handleFilterChange }}>
                   <div className="flex flex-col items-center gap-5 pt-12" style={{ height: "80vh" }}>
                         <h1 className="card-title">Expense Tracker</h1>
-                        <h2 className="text-white font-bold text-3xl">Account Balance: ₹ {totalBalance}</h2>
-
+                        <h2 className="text-white font-bold text-3xl" onClick={() => handleFilterChange({ target: { value: "All" } })} >Account Balance: ₹ {totalBalance}</h2>
                         <div className="container flex justify-center gap-3">
                               <Form />
                               <ExpenseHistory />
