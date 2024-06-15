@@ -23,33 +23,62 @@ const StyledTableCell = styled(TableCell)(({ theme }) => ({
 function Account() {
       let data = useSelector((state) => {
             console.log(state)
-            return state.user;
+            return state;
       }
       )
       return (
-            <Container sx={{ padding: 5 }}>
-                  <Typography variant='h2'>Account Details</Typography>
-                  <TableContainer component={Paper}>
+            <>
+                  <Container sx={{ padding: 5 }}>
+                        <Typography variant='h2'>Account Details</Typography>
+                        <TableContainer component={Paper}>
 
-                        <Table>
-                              <TableHead>
-                                    <TableRow>
-                                          <StyledTableCell align="right">Name</StyledTableCell>
-                                          <StyledTableCell align="right">Mobile</StyledTableCell>
-                                          <StyledTableCell align="right">Balance</StyledTableCell>
-                                    </TableRow>
-                              </TableHead>
-                              <TableBody>
-                                    <TableRow>
-                                          <StyledTableCell align="right">{data.fullName}</StyledTableCell>
-                                          <StyledTableCell align="right">{data.mobile}</StyledTableCell>
-                                          <StyledTableCell align="right">{data.balance}</StyledTableCell>
-                                    </TableRow>
-                              </TableBody>
-                        </Table>
-                  </TableContainer>
+                              <Table>
+                                    <TableHead>
+                                          <TableRow>
+                                                <StyledTableCell align="right">Name</StyledTableCell>
+                                                <StyledTableCell align="right">Mobile</StyledTableCell>
+                                                <StyledTableCell align="right">Balance</StyledTableCell>
+                                          </TableRow>
+                                    </TableHead>
+                                    <TableBody>
+                                          <TableRow>
+                                                <StyledTableCell align="right">{data.user.fullName}</StyledTableCell>
+                                                <StyledTableCell align="right">{data.user.mobile}</StyledTableCell>
+                                                <StyledTableCell align="right">{data.user.balance}</StyledTableCell>
+                                          </TableRow>
+                                    </TableBody>
+                              </Table>
+                        </TableContainer>
 
-            </Container>
+                  </Container>
+                  <Container sx={{ padding: 5 }}>
+                        <Typography variant='h2'>Transaction Details</Typography>
+                        <TableContainer component={Paper}>
+
+                              <Table>
+
+                                    <TableHead>
+                                          <TableRow>
+                                                <StyledTableCell align="right">Type</StyledTableCell>
+                                                <StyledTableCell align="right">Amount</StyledTableCell>
+                                                <StyledTableCell align="right">Date</StyledTableCell>
+                                          </TableRow>
+                                    </TableHead>
+                                    <TableBody>
+
+                                          {
+                                                data.transaction.map((tr) => (
+                                                      <TableRow>
+                                                            <StyledTableCell align="right">{tr.type}</StyledTableCell>,
+                                                            <StyledTableCell align="right">{tr.amount}</StyledTableCell>,
+                                                            <StyledTableCell align="right">{tr.date}</StyledTableCell>,
+                                                      </TableRow>
+                                                ))}
+                                    </TableBody>
+                              </Table>
+                        </TableContainer>
+                  </Container>
+            </>
       )
 }
 

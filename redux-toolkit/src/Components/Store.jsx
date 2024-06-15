@@ -7,6 +7,7 @@ const state = {
       mobile: null,
 }
 
+const transactions = []
 const userSlice = createSlice(
       {
             name: "user",
@@ -30,13 +31,25 @@ const userSlice = createSlice(
       }
 )
 
-console.log(userSlice);
+const transactionsSlice = createSlice({
+      name: 'transactions',
+      initialState: transactions,
+      reducers: {
+            addTransaction: (state, action) => {
+                  state.push(action.payload)
+            }
+      }
+})
+
+// console.log(userSlice);
 const store = configureStore({
       reducer: {
-            user: userSlice.reducer
+            user: userSlice.reducer,
+            transaction: transactionsSlice.reducer
       },
 })
 
 export default store;
 
 export const { updateMobile, updateName, withdraw, deposit } = userSlice.actions
+export const { addTransaction } = transactionsSlice.actions

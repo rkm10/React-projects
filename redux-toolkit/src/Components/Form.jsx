@@ -1,7 +1,8 @@
 import { Button, Card, CardContent, FormControl, FormHelperText, Input, InputLabel } from '@mui/material'
 import React, { useState } from 'react'
-import { updateMobile, updateName, withdraw, deposit } from '../Components/Store'
-import { useDispatch } from 'react-redux'
+import { updateMobile, updateName, withdraw, deposit, addTransaction } from '../Components/Store'
+import { useDispatch, useSelector } from 'react-redux'
+import Account from './Account'
 export default function Form() {
 
       let dispatch = useDispatch()
@@ -20,6 +21,10 @@ export default function Form() {
       const [fullName, setFullName] = useState("")
       const [mobile, setMobile] = useState("")
 
+      let accountName = useSelector((state) =>
+            state.user.fullName
+      )
+
 
       return (
 
@@ -32,13 +37,21 @@ export default function Form() {
                               </FormControl>
                               <Button variant='contained' color='success' onClick={() => {
                                     dispatch(withdraw(amount));
-                                    setAmount(" ");
+                                    dispatch(addTransaction({
+                                          type: "debit", AccountName: accountName, amount: amount,
+                                          date: new Date().toLocaleDateString(),
+                                    }));
+                                    setAmount("");
                               }}
                               >Withdraw</Button>
                               <Button variant='contained' color='warning'
                                     onClick={() => {
                                           dispatch(deposit(amount));
-                                          setAmount(" ");
+                                          dispatch(addTransaction({
+                                                date: new Date().toLocaleDateString(),
+                                                type: "credit", AccountName: accountName, amount: amount,
+                                          }));
+                                          setAmount("");
                                     }}>Deposit</Button>
                         </CardContent>
 
