@@ -1,9 +1,11 @@
-import MainApp from "./Components/MainApp"
+import Everything from "./Everything"
+
+
 function App() {
 
   return (
     <>
-      <MainApp />
+      <Everything />
     </>
   )
 }

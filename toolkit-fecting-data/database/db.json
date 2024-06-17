@@ -1,0 +1,39 @@
+{
+  "Data": [
+    {
+      "id": "bbb1",
+      "expensedetails": "something",
+      "amount": "-33123",
+      "date": "6/12/2024",
+      "time": "4:49:17 PM"
+    },
+    {
+      "id": "683a",
+      "expensedetails": "da",
+      "amount": "213423",
+      "date": "6/12/2024",
+      "time": "5:09:16 PM"
+    },
+    {
+      "id": "5c69",
+      "expensedetails": "sdads",
+      "amount": "312312",
+      "date": "6/12/2024",
+      "time": "6:06:07 PM"
+    },
+    {
+      "id": "bcc8",
+      "expensedetails": "zzxcxzczcx",
+      "amount": "-3213123",
+      "date": "6/12/2024",
+      "time": "6:06:13 PM"
+    },
+    {
+      "id": "4394",
+      "expensedetails": "sad",
+      "amount": "213213",
+      "date": "6/12/2024",
+      "time": "6:07:05 PM"
+    }
+  ]
+}

@@ -1,0 +1,25 @@
+{
+  "Data": [
+    {
+      "id": "4c9df",
+      "expensedetails": "rent",
+      "amount": "-12000",
+      "date": "6/12/2024",
+      "time": "3:05:57 PM"
+    },
+    {
+      "id": "dabb",
+      "expensedetails": "rara",
+      "amount": "23452",
+      "date": "6/17/2024",
+      "time": "4:04:28 PM"
+    },
+    {
+      "id": "47ab",
+      "expensedetails": "random",
+      "amount": "21431",
+      "date": "6/17/2024",
+      "time": "4:13:17 PM"
+    }
+  ]
+}
