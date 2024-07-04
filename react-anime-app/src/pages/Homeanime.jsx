@@ -19,7 +19,7 @@ export default function Homeanime() {
                   .then((datas) => { setapiData(datas.data); setpending(false) })
                   .catch((err) => { setError(err.message) })
       }, []);
-
+      console.log(apiData);
       return (
             <>
                   {error && <h1>{error}</h1>}
