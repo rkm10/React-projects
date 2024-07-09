@@ -1,6 +1,9 @@
 import React, { useState } from 'react'
-
+import DatePicker from 'react-datepicker'
+import AppoPicker from './appointment-picker'
 import './App.css'
+import MyDatePicker from './demo'
+import DateTimeSlotPicker from './Date'
 
 function App() {
 
@@ -31,6 +34,9 @@ function App() {
                               }>+</button>
                         </div>
                   </div>
+                  {/* <AppoPicker /> */}
+                  {/* <MyDatePicker />
+                  <DateTimeSlotPicker /> */}
             </>
       )
 }

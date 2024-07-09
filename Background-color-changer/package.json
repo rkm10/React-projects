@@ -10,8 +10,12 @@
     "preview": "vite preview"
   },
   "dependencies": {
+    "appointment-picker": "^2.0.0",
     "react": "^18.2.0",
-    "react-dom": "^18.2.0"
+    "react-appointment-picker": "^3.2.1",
+    "react-datepicker": "^7.3.0",
+    "react-dom": "^18.2.0",
+    "react-time-picker": "^7.0.0"
   },
   "devDependencies": {
     "@types/react": "^18.2.66",
