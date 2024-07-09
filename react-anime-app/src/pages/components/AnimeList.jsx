@@ -9,7 +9,7 @@ export default function AnimeList({ apiData }) {
                         apiData.map((data, index) => {
                               return (
                                     <div className="card w-96 glass m-3" key={data.mal_id}>
-                                          {/* skeleton */}
+                                          skeleton
                                           <figure>
                                                 <Link to={`/animedetails/${data.mal_id}`}>
                                                       <img src={apiData[index].images.jpg.image_url} alt="poster" />
