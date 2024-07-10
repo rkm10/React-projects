@@ -1,0 +1,58 @@
+/* src/CustomCalendar.css */
+.react-calendar {
+    width: 100%;
+    max-width: 350px;
+    background: white;
+    border: none;
+    font-family: Arial, sans-serif;
+    line-height: 1.125em;
+}
+
+.react-calendar__navigation button {
+    color: #4caf50;
+    min-width: 44px;
+    background: none;
+    font-size: 16px;
+    margin-top: 8px;
+    cursor: pointer;
+}
+
+.react-calendar__navigation button:disabled {
+    background-color: #f0f0f0;
+}
+
+.react-calendar__navigation button:hover:not(:disabled) {
+    background-color: #e6ffe6;
+}
+
+.react-calendar__month-view__days__day--weekend {
+    color: #d9534f;
+}
+
+.react-calendar__tile--active {
+    background: #4caf50;
+    color: white;
+}
+
+.react-calendar__tile--active:hover {
+    background: #45a049;
+}
+
+.react-calendar__tile--now {
+    background: #ffeb3b;
+}
+
+.react-calendar__tile--now:hover {
+    background: #ffeb3b;
+}
+
+/* CustomCalendar.css */
+.react-calendar__navigation__prev2-button,
+.react-calendar__navigation__next2-button {
+    display: none;
+}
+
+.react-calendar__tile[disabled] {
+    cursor: not-allowed;
+    background-color: #f9f9f9;
+}
