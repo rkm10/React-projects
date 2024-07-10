@@ -1,0 +1,77 @@
+.date-time-picker {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin: 20px;
+}
+
+.react-calendar {
+  width: 100%;
+  max-width: 600px;
+  background: white;
+  border: none;
+  border-radius: 8px;
+  box-shadow: 0 10px 15px rgba(0, 0, 0, 0.1);
+  margin-bottom: 20px;
+}
+
+.time-slots {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  justify-content: center;
+  height: 0;
+  overflow: hidden;
+  transition: height 3.3s ease;
+  /* Smooth animation on height change */
+}
+
+.time-slots.show {
+  height: auto;
+  /* Expand to auto height when showSlots is true */
+}
+
+.time-slot {
+  padding: 10px 20px;
+  border: 1px solid #007bff;
+  background-color: #f0f0f0;
+  cursor: pointer;
+  border-radius: 5px;
+  transition: background-color 3.3s ease;
+  font-size: 1rem;
+}
+
+.time-slot.selected {
+  background-color: #007bff;
+  color: white;
+}
+
+.time-slot:hover {
+  background-color: #007bff;
+  color: white;
+}
+
+.react-calendar__tile--now {
+  background: #fff !important;
+  color: #007bff !important;
+}
+
+.react-calendar__tile--active {
+  background: #007bff !important;
+  color: white !important;
+}
+
+.react-calendar__tile--range {
+  background: #007bff !important;
+  color: white !important;
+}
+
+.react-calendar__tile--rangeEnd {
+  background: #007bff !important;
+  color: white !important;
+}
+
+.react-calendar__tile--rangeStart {
+  background: #007bff !important;
+  color: white !important;
+}
