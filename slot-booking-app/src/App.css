@@ -20,6 +20,17 @@
   flex-wrap: wrap;
   gap: 10px;
   justify-content: center;
+  height: 0;
+  /* Start with height 0 */
+  overflow: hidden;
+  /* Hide overflowing content */
+  transition: height 0.3s ease;
+  /* Smooth animation on height change */
+}
+
+.time-slots.show {
+  height: auto;
+  /* Expand to auto height when showSlots is true */
 }
 
 .time-slot {
