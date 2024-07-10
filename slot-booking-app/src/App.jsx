@@ -10,6 +10,7 @@ function App() {
       <div>
         <h1>Select Date & Time</h1>
         <DateTimePicker />
+        <DatePicker />
       </div>
     </>
   )
