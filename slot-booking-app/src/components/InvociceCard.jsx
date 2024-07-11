@@ -3,7 +3,7 @@ import React from "react";
 
 export default function InvoiceCard() {
     return (
-        <Card sx={{ minWidth: { xs: "100%", md: "100%", lg: "40%" }, maxWidth: { xs: "100%", md: "100%", lg: "40%" } }}>
+        <Card sx={{ minWidth: { xs: "100%", md: "100%", lg: "40%" }, maxWidth: { xs: "100%", md: "100%", lg: "42%" } }}>
             <Box sx={{ p: 2 }}>
                 <CardContent>
                     <Typography sx={{ fontSize: 16 }} color="text.secondary" gutterBottom>
@@ -21,20 +21,21 @@ export default function InvoiceCard() {
                 </CardContent>
                 <Divider sx={{ width: "90%", margin: "auto" }} />
                 <CardContent sx={{ minHeight: "100px" }}>
-                    <Box>
-
+                    <Box sx={{ display: "flex", alignItems: "center", width: "100%", flexWrap: "nowrap", wordBreak: "break-all" }}>
                         <Typography sx={{ fontSize: 14 }} color="text.secondary" gutterBottom>
                             CUSTOMER
                         </Typography>
                         <Divider
+                            orientation="vertical"
+                            flexItem
                             sx={{
-                                "&::before, &::after": {
-                                    borderColor: "black",
-                                },
+                                mx: 2,
+                                borderColor: "black",
                             }}
-                        >
-                            <Typography sx={{ fontSize: 14, wordBreak: "break-all" }} color="text.secondary" gutterBottom>Customer Name Customer Name Customer NameCustomer NameCustomer Name</Typography>
-                        </Divider>
+                        />
+                        <Typography sx={{ fontSize: 14 }} color="text.secondary" gutterBottom>
+                            Customer Name
+                        </Typography>
                     </Box>
                 </CardContent>
                 <Divider />
