@@ -21,20 +21,14 @@ export default function InvoiceCard() {
                 </CardContent>
                 <Divider sx={{ width: "90%", margin: "auto" }} />
                 <CardContent sx={{ minHeight: "100px" }}>
-                    <Box sx={{ display: "flex", justifyContent: "space-between", width: "100%", flexWrap: "nowrap", }}>
+                    <Box sx={{ display: "flex", justifyContent: "space-between", alignItems: "center", width: "100%", flexWrap: "nowrap", position: "relative" }}>
                         <Typography sx={{ fontSize: 14 }} color="text.secondary" gutterBottom>
                             CUSTOMER
                         </Typography>
-                        <Divider
-                            orientation="vertical"
-                            flexItem
-                            sx={{
-                                mx: 2,
-                                borderColor: "black",
-                            }}
-                        />
+                        <Box sx={{ flexGrow: 1, mx: 2, borderBottom: "1px solid black", height: "1px" }}></Box>
                         <Typography sx={{ fontSize: 14 }} color="text.secondary" gutterBottom>
-                            Customer Name asfas fa as fasfa a fas
+                            Customer Name asfas fa a ghsdfa
+
                         </Typography>
                     </Box>
                 </CardContent>
