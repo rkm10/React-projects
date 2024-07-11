@@ -14,39 +14,50 @@ export default function InvociceCard() {
             </CardContent>
             <Divider />
             <CardContent>
-                <Typography sx={{ fontSize: 14 }} color="text.secondary" gutterBottom>
+                <Typography color="text.primary" gutterBottom variant="body1">
                     Room Type
                 </Typography>
-                <Typography sx={{ fontSize: 14 }} color="text.secondary" gutterBottom>
+                <Typography color="text.blue" gutterBottom variant="body2">
                     Date
                 </Typography>
             </CardContent>
             <Divider
-                sx={{ width: "80%", margin: "auto" }}
+                sx={{ width: "90%", margin: "auto" }}
             />
             <CardContent>
                 <Typography sx={{ fontSize: 14 }} color="text.secondary" gutterBottom>
                     CUSTOMER
                 </Typography>
-                <Typography sx={{ fontSize: 14 }} color="text.secondary" gutterBottom>
-                    CUSTOMER NAME
-                </Typography>
+                <Divider
+                    sx={{
+                        "&::before, &::after": {
+                            borderColor: "black",
+                        },
+                    }}
+                >
+                    <Typography>Some Text</Typography>
+                </Divider>
             </CardContent>
             <Divider />
             <CardContent>
                 <Typography sx={{ fontSize: 14 }} color="text.secondary" gutterBottom>
                     COST BREAKDOWN
                 </Typography>
+                <Divider
+                    sx={{ width: "90%", margin: "auto" }}
+                />
                 <CardContent>
-                    Details along with cost
+                    <Typography variant="body2">
+                        Details along with costasdasdsadsadas safasfas
+                    </Typography>
+                    <Divider sx={{ margin: "auto", marginTop: "5px", marginBottom: "5px", border: "1px solid black" }} />
+                    <Typography sx={{ fontSize: 14 }} color="text.secondary" gutterBottom>
+                        Total Price with gst
+                    </Typography>
+                </CardContent>
+                <CardContent>
                 </CardContent>
             </CardContent>
-            <CardContent>
-                <Typography sx={{ fontSize: 14 }} color="text.secondary" gutterBottom>
-                    Total Price with gst
-                </Typography>
-            </CardContent>
-
         </Card>
     )
 }
