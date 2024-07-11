@@ -3,6 +3,8 @@ import Calendar from 'react-calendar';
 import 'react-calendar/dist/Calendar.css';
 import styled from 'styled-components';
 import InvociceCard from './InvociceCard';
+import IntroDivider from './CardBasic';
+
 const Container = styled.div`
   font-family: 'Arial', sans-serif;
   display: flex;
@@ -139,6 +141,7 @@ const DatePicker = () => {
           </TimeSlotGrid>
         </TimeSlotsContainer>
       )}
+      <IntroDivider />
       <InvociceCard />
     </Container>
   );
