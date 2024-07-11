@@ -1,4 +1,6 @@
 import { Card, CardContent, CardHeader, Typography } from "@mui/material";
+import Divider from '@mui/material/Divider';
+
 import React from "react";
 
 
@@ -10,6 +12,7 @@ export default function InvociceCard() {
                     SUMMARY
                 </Typography>
             </CardContent>
+            <Divider />
             <CardContent>
                 <Typography sx={{ fontSize: 14 }} color="text.secondary" gutterBottom>
                     Room Type
