@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import Calendar from 'react-calendar';
 import 'react-calendar/dist/Calendar.css';
 import styled from 'styled-components';
-
+import InvociceCard from './InvociceCard';
 const Container = styled.div`
   font-family: 'Arial', sans-serif;
   display: flex;
@@ -87,60 +87,61 @@ const CalendarWrapper = styled.div`
 `;
 
 const DatePicker = () => {
-    const [selectedDate, setSelectedDate] = useState(null);
-    const [selectedTime, setSelectedTime] = useState(null);
-    const [availableSlots, setAvailableSlots] = useState({
-        '2024-07-26': ['8:00 AM', '9:00 AM', '10:00 AM', '12:00 PM'],
-        '2024-07-27': ['1:00 PM', '2:00 PM', '3:00 PM', '4:00 PM'],
-    });
+  const [selectedDate, setSelectedDate] = useState(null);
+  const [selectedTime, setSelectedTime] = useState(null);
+  const [availableSlots, setAvailableSlots] = useState({
+    '2024-07-26': ['8:00 AM', '9:00 AM', '10:00 AM', '12:00 PM'],
+    '2024-07-27': ['1:00 PM', '2:00 PM', '3:00 PM', '4:00 PM'],
+  });
 
-    const handleDateChange = date => {
-        setSelectedDate(date);
-        setSelectedTime(null); // Reset selected time when date changes
-    };
+  const handleDateChange = date => {
+    setSelectedDate(date);
+    setSelectedTime(null); // Reset selected time when date changes
+  };
 
-    const handleTimeSlotClick = time => {
-        setSelectedTime(time);
-    };
+  const handleTimeSlotClick = time => {
+    setSelectedTime(time);
+  };
 
-    const tileDisabled = ({ date }) => {
-        return date < new Date().setHours(0, 0, 0, 0); // Disable dates before today
-    };
+  const tileDisabled = ({ date }) => {
+    return date < new Date().setHours(0, 0, 0, 0); // Disable dates before today
+  };
 
-    const formattedDate = selectedDate?.toISOString().split('T')[0];
+  const formattedDate = selectedDate?.toISOString().split('T')[0];
 
-    return (
-        <Container>
-            <h2>Select a Date & Time</h2>
-            <CalendarWrapper>
-                <Calendar
-                    onChange={handleDateChange}
-                    value={selectedDate}
-                    tileDisabled={tileDisabled}
-                />
-            </CalendarWrapper>
-            {selectedDate && (
-                <TimeSlotsContainer>
-                    <TimeSlotsHeader>Pick a slot for {selectedDate.toDateString()}</TimeSlotsHeader>
-                    <TimeSlotGrid>
-                        {availableSlots[formattedDate] ? (
-                            availableSlots[formattedDate].map(slot => (
-                                <TimeSlot
-                                    key={slot}
-                                    selected={slot === selectedTime}
-                                    onClick={() => handleTimeSlotClick(slot)}
-                                >
-                                    {slot}
-                                </TimeSlot>
-                            ))
-                        ) : (
-                            <p>No slots available</p>
-                        )}
-                    </TimeSlotGrid>
-                </TimeSlotsContainer>
+  return (
+    <Container>
+      <h2>Select a Date & Time</h2>
+      <CalendarWrapper>
+        <Calendar
+          onChange={handleDateChange}
+          value={selectedDate}
+          tileDisabled={tileDisabled}
+        />
+      </CalendarWrapper>
+      {selectedDate && (
+        <TimeSlotsContainer>
+          <TimeSlotsHeader>Pick a slot for {selectedDate.toDateString()}</TimeSlotsHeader>
+          <TimeSlotGrid>
+            {availableSlots[formattedDate] ? (
+              availableSlots[formattedDate].map(slot => (
+                <TimeSlot
+                  key={slot}
+                  selected={slot === selectedTime}
+                  onClick={() => handleTimeSlotClick(slot)}
+                >
+                  {slot}
+                </TimeSlot>
+              ))
+            ) : (
+              <p>No slots available</p>
             )}
-        </Container>
-    );
+          </TimeSlotGrid>
+        </TimeSlotsContainer>
+      )}
+      <InvociceCard />
+    </Container>
+  );
 };
 
 export default DatePicker;
