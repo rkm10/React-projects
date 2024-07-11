@@ -47,7 +47,16 @@ export default function InvoiceCard() {
                     </Typography>
                 </CardContent>
             </Box>
-
+            <CardActionArea sx={{ p: 2 }}>
+                <Box sx={{ display: "flex", justifyContent: "space-between", alignItems: "center" }}>
+                    <Typography sx={{ fontSize: 14 }} color="text.secondary" gutterBottom>
+                        TOTAL
+                    </Typography>
+                    <Typography sx={{ fontSize: 14 }} color="text.secondary" gutterBottom>
+                        $100
+                    </Typography>
+                </Box>
+            </CardActionArea>
 
         </Card>
     );
