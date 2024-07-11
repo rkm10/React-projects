@@ -4,11 +4,15 @@ import React from "react";
 
 export default function InvociceCard() {
     return (
-        <Card>
-            <CardHeader>SUMMARY</CardHeader>
+        <Card sx={{ minWidth: 275 }}>
             <CardContent>
                 <Typography sx={{ fontSize: 14 }} color="text.secondary" gutterBottom>
-                    Word of the Day
+                    SUMMARY
+                </Typography>
+            </CardContent>
+            <CardContent>
+                <Typography sx={{ fontSize: 14 }} color="text.secondary" gutterBottom>
+                    SUMMARY
                 </Typography>
             </CardContent>
 
