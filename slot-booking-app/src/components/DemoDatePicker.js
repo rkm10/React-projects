@@ -90,53 +90,53 @@ const CalendarWrapper = styled.div`
 `;
 
 const DatePicker = () => {
-    const [selectedDate, setSelectedDate] = useState(null);
-    const [selectedTime, setSelectedTime] = useState(null);
-    const [availableTimeSlots, setAvailableTimeSlots] = useState([
-        '08:00 am', '08:15 am', '08:30 am', '08:45 am', '09:00 am'
-    ]);
+  const [selectedDate, setSelectedDate] = useState(null);
+  const [selectedTime, setSelectedTime] = useState(null);
+  const [availableTimeSlots, setAvailableTimeSlots] = useState([
+    '08:00 am', '08:15 am', '08:30 am', '08:45 am', '09:00 am'
+  ]);
 
-    const handleDateChange = (date) => {
-        setSelectedDate(date);
-        setSelectedTime(null); // Reset selected time when date changes
-    };
+  const handleDateChange = (date) => {
+    setSelectedDate(date);
+    setSelectedTime(null); // Reset selected time when date changes
+  };
 
-    const handleTimeSlotClick = (time) => {
-        setSelectedTime(time);
-    };
+  const handleTimeSlotClick = (time) => {
+    setSelectedTime(time);
+  };
 
-    const tileDisabled = ({ date }) => {
-        return date < new Date().setHours(0, 0, 0, 0); // Disable dates before today
-    };
+  const tileDisabled = ({ date }) => {
+    return date < new Date().setHours(0, 0, 0, 0); // Disable dates before today
+  };
 
-    return (
-        <Container>
-            <h2>Select a Date & Time</h2>
-            <CalendarWrapper>
-                <Calendar
-                    onChange={handleDateChange}
-                    value={selectedDate}
-                    tileDisabled={tileDisabled}
-                />
-            </CalendarWrapper>
-            {selectedDate && (
-                <TimeSlotsContainer>
-                    <TimeSlotsHeader>Pick a slot for {selectedDate.toDateString()}</TimeSlotsHeader>
-                    <TimeSlotGrid>
-                        {availableTimeSlots.map(time => (
-                            <TimeSlot
-                                key={time}
-                                selected={time === selectedTime}
-                                onClick={() => handleTimeSlotClick(time)}
-                            >
-                                {time}
-                            </TimeSlot>
-                        ))}
-                    </TimeSlotGrid>
-                </TimeSlotsContainer>
-            )}
-        </Container>
-    );
+  return (
+    <Container>
+      <h2>Select a Date & Time</h2>
+      <CalendarWrapper>
+        <Calendar
+          onChange={handleDateChange}
+          value={selectedDate}
+          tileDisabled={tileDisabled}
+        />
+      </CalendarWrapper>
+      {selectedDate && (
+        <TimeSlotsContainer>
+          <TimeSlotsHeader>Pick a slot for {selectedDate.toDateString()}</TimeSlotsHeader>
+          <TimeSlotGrid>
+            {availableTimeSlots.map(time => (
+              <TimeSlot
+                key={time}
+                selected={time === selectedTime}
+                onClick={() => handleTimeSlotClick(time)}
+              >
+                {time}
+              </TimeSlot>
+            ))}
+          </TimeSlotGrid>
+        </TimeSlotsContainer>
+      )}
+    </Container>
+  );
 };
 
 export default DatePicker;

@@ -6,7 +6,7 @@ import React from "react";
 
 export default function InvociceCard() {
     return (
-        <Card sx={{ Width: { xs: "100%", md: "100%", lg: "40%" } }}>
+        <Card sx={{ minWidth: { xs: "100%", md: "100%", lg: "40%" }, maxWidth: { xs: "100%", md: "100%", lg: "42%" } }}>
             <CardContent>
                 <Typography sx={{ fontSize: 16 }} color="text.secondary" gutterBottom>
                     SUMMARY
@@ -24,7 +24,7 @@ export default function InvociceCard() {
             <Divider
                 sx={{ width: "90%", margin: "auto" }}
             />
-            <CardContent sx={{ display: "flex", justifyContent: "space-between" }}>
+            <CardContent sx={{ display: "flex", justifyContent: "space-between", minHeight: "100px" }}>
                 <Typography sx={{ fontSize: 14 }} color="text.secondary" gutterBottom>
                     CUSTOMER
                 </Typography>
@@ -35,7 +35,7 @@ export default function InvociceCard() {
                         },
                     }}
                 >
-                    <Typography>CSome Text </Typography>
+                    <Typography>CSome Text  </Typography>
                 </Divider>
             </CardContent>
             <Divider />
