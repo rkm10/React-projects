@@ -35,7 +35,7 @@ export default function InvociceCard() {
                         },
                     }}
                 >
-                    <Typography>Customer Name</Typography>
+                    <Typography>CSome Text </Typography>
                 </Divider>
             </CardContent>
             <Divider />
