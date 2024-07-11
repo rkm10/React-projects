@@ -8,16 +8,16 @@ export default function InvociceCard() {
     return (
         <Card sx={{ minWidth: { xs: "100%", md: "100%", lg: "40%" } }}>
             <CardContent>
-                <Typography sx={{ fontSize: 14 }} color="text.secondary" gutterBottom>
+                <Typography sx={{ fontSize: 16 }} color="text.secondary" gutterBottom>
                     SUMMARY
                 </Typography>
             </CardContent>
             <Divider />
             <CardContent>
-                <Typography color="text.primary" gutterBottom variant="body1">
+                <Typography color="text.primary" sx={{ fontWeight: "bold" }} gutterBottom variant="body1">
                     Room Type
                 </Typography>
-                <Typography color="text.blue" gutterBottom variant="body2">
+                <Typography color="blue" sx={{ fontWeight: "bold" }} gutterBottom variant="body2">
                     Date
                 </Typography>
             </CardContent>
