@@ -21,6 +21,9 @@ export default function InvociceCard() {
                     Date
                 </Typography>
             </CardContent>
+            <Divider
+                sx={{ width: "80%", margin: "auto" }}
+            />
             <CardContent>
                 <Typography sx={{ fontSize: 14 }} color="text.secondary" gutterBottom>
                     CUSTOMER
@@ -29,6 +32,7 @@ export default function InvociceCard() {
                     CUSTOMER NAME
                 </Typography>
             </CardContent>
+            <Divider />
             <CardContent>
                 <Typography sx={{ fontSize: 14 }} color="text.secondary" gutterBottom>
                     COST BREAKDOWN
