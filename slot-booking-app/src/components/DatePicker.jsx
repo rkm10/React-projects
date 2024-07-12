@@ -141,7 +141,7 @@ const DatePicker = () => {
           </TimeSlotGrid>
         </TimeSlotsContainer>
       )}
-      {/* <IntroDivider /> */}
+      <IntroDivider />
       <InvociceCard />
     </Container>
   );
