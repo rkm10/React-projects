@@ -26,7 +26,7 @@ export default function IntroDivider() {
             <Divider />
             <Box sx={{ p: 2 }}>
                 <Typography gutterBottom variant="body2">
-                    Select type
+                    Select types
                 </Typography>
                 <Stack direction="row" spacing={1}>
                     <Chip color="primary" label="Soft" size="small" />
