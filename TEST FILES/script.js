@@ -16,7 +16,8 @@ domReady(function () {
         let url = new URL(window.location.href);
         let domain = url.hostname;
 
-        // Ensure the scanned URL is HTTPS
+        // Ensure the scanned URL is HTTPS 
+        //
         const scannedUrl = decodeText.startsWith('http://')
             ? decodeText.replace('http://', 'https://')
             : `https://${domain}/gatepass/security/${decodeText}`;
