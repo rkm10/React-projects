@@ -1,4 +1,5 @@
 import "./App.css";
+import { BellRing } from 'lucide-react';
 import React, { useState } from "react";
 
 function App() {
@@ -52,7 +53,8 @@ function App() {
             setIsEdiatable("");
       }
 
-      return (
+      return (<>
+            <h1 style={{ textAlign: "right", marginRight: "20px", marginTop: "20px" }}><BellRing onClick={() => alert("bell ring")} size={32} style={{ cursor: "pointer" }} /></h1>
             <div className="container mt-5 w-50">
                   <h3 className="text-center">To-Do App using React</h3>
                   <div className="input-group">
@@ -71,6 +73,7 @@ function App() {
                         })}
                   </ul>
             </div>
+      </>
       );
 }
 
