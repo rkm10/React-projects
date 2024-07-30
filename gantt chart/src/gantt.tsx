@@ -6,7 +6,7 @@ const GanttChart = () => {
   const [tasks, setTasks] = useState<Task[]>([
     {
       start: new Date(2024, 6, 25),
-      end: new Date(2024, 6, 28),
+      end: new Date(2024, 7, 12),
       name: "Idea",
       id: "Task 0",
       type: "task",
@@ -16,41 +16,51 @@ const GanttChart = () => {
     },
     {
       start: new Date(2024, 6, 25),
-      end: new Date(2024, 7, 5),
+      end: new Date(2024, 7, 2),
       name: "Idea 2",
       id: "Task 1",
       type: "task",
       progress: 45,
       isDisabled: true,
+      dependencies: ["Task 0"],
+      styles: { progressColor: "#ffbb54" },
+    },
+    {
+      start: new Date(2024, 6, 29),
+      end: new Date(2024, 7, 1),
+      name: "Idea 3",
+      id: "Task 2",
+      type: "task",
+      progress: 100,
+      isDisabled: true,
+      dependencies: ["Task 0"],
       styles: { progressColor: "#ffbb54" },
     },
   ]);
 
-  const [viewDate, setViewDate] = useState<Date>(new Date());
-
   const view = ViewMode.Day; // Example view mode, you can change it
 
-  // Utility function to check if the end date is earlier than today
+  // Utility functions
   const isEndDateBeforeToday = (endDate: Date) => {
     const today = new Date();
-    // Remove the time part of today's date
     today.setHours(0, 0, 0, 0);
     return endDate < today;
   };
 
-  // Update task styles if the end date is before today
+  // Update task styles based on progress and end date
   useEffect(() => {
     const updatedTasks = tasks.map((task) => {
-      if (isEndDateBeforeToday(task.end)) {
-        return {
-          ...task,
-          styles: {
-            ...task.styles,
-            backgroundColor: "red",
-          },
-        };
+      let updatedStyles = { ...task.styles };
+
+      if (task.progress === 100) {
+        updatedStyles = { ...updatedStyles, progressColor: "green" };
+      } else if (isEndDateBeforeToday(task.end)) {
+        updatedStyles = { ...updatedStyles, progressColor: "red" };
+      } else {
+        updatedStyles = { ...updatedStyles, progressColor: "#ffbb54" }; // Default color
       }
-      return task;
+
+      return { ...task, styles: updatedStyles };
     });
     setTasks(updatedTasks);
   }, [tasks]);
@@ -59,11 +69,6 @@ const GanttChart = () => {
     // Handle task date changes
     setTasks(tasks.map((t) => (t.id === task.id ? task : t)));
   };
-
-  //   const onTaskDelete = (task: Task) => {
-  //     // Handle task deletion
-  //     setTasks(tasks.filter((t) => t.id !== task.id));
-  //   };
 
   const onProgressChange = (task: Task) => {
     // Handle progress changes
@@ -85,9 +90,7 @@ const GanttChart = () => {
       <Gantt
         tasks={tasks}
         viewMode={view}
-        // viewDate={viewDate}
         onDateChange={onTaskChange}
-        // onTaskDelete={onTaskDelete}
         onProgressChange={onProgressChange}
         onDoubleClick={onDblClick}
         onClick={onClick}
