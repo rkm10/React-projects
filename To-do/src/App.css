@@ -3,3 +3,17 @@
     align-items: center;
     justify-content: space-between;
 }
+
+.notify {
+    position: absolute;
+    right: 10px;
+    z-index: 99;
+}
+
+.hidden {
+    display: none;
+}
+
+.flex {
+    display: flex;
+}

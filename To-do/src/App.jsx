@@ -3,6 +3,9 @@ import { BellRing } from 'lucide-react';
 import React, { useState } from "react";
 
 function App() {
+
+      const [visible, setVisible] = useState(false);
+
       let [todoinput, updateinput] = useState("");
 
       let [todoList, updateTodo] = useState([
@@ -53,15 +56,15 @@ function App() {
             setIsEdiatable("");
       }
 
+      const NotificationPopup = () => {
+            setVisible(!visible);
+      }
+
+
       return (<>
-            <h1 style={{ textAlign: "right", marginRight: "20px", marginTop: "20px" }}><BellRing onClick={() => alert("bell ring")} size={32} style={{ cursor: "pointer" }} /></h1>
-            <div className="container mt-5 w-50">
-                  <h3 className="text-center">To-Do App using React</h3>
-                  <div className="input-group">
-                        <input className="form-control" type="text" value={todoinput} onChange={(e) => { let task = e.target.value; updateinput(task); }} />
-                        <button onClick={addnewtodo} className="btn btn-primary"> Add </button>
-                  </div>
-                  <ul className="list-group mt-4">
+            <h1 style={{ textAlign: "right", marginRight: "20px", marginTop: "20px" }}><BellRing onClick={NotificationPopup} size={32} style={{ cursor: "pointer" }} /></h1>
+            <div className={`notify ${visible ? 'flex' : 'hidden'}`}>
+                  <ul className="list-group mt-4 ">
                         {todoList.map((todo) => {
                               return (
                                     <li className="list-group-item" key={todo.id}>
@@ -72,6 +75,14 @@ function App() {
                               );
                         })}
                   </ul>
+            </div>
+            <div className="container mt-5 w-50">
+                  <h3 className="text-center">To-Dos App using React</h3>
+                  <div className="input-group">
+                        <input className="form-control" type="text" value={todoinput} onChange={(e) => { let task = e.target.value; updateinput(task); }} />
+                        <button onClick={addnewtodo} className="btn btn-primary"> Add </button>
+                  </div>
+
             </div>
       </>
       );
