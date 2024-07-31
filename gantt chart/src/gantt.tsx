@@ -20,10 +20,10 @@ const GanttChart = () => {
       end: new Date(2024, 7, 2),
       name: "Idea 2",
       id: "Task 1",
-      type: "task",
+      type: "project",
       progress: 45,
       isDisabled: false,
-      hideChildren: true,
+      // hideChildren: false,
       dependencies: ["Task 0"],
     },
     {
@@ -34,7 +34,7 @@ const GanttChart = () => {
       type: "project",
       progress: 100,
       isDisabled: true,
-      hideChildren: true,
+      // hideChildren: true,
       dependencies: ["Task 1"],
     },
   ]);
@@ -99,11 +99,15 @@ const GanttChart = () => {
         barProgressColor={"black"}
         arrowColor={"red"}
         todayColor={"blue"}
-        barFill={100}
-        // columnWidth={100}
+        arrowIndent={10}
+        barFill={60}
+        rowHeight={50}
+        columnWidth={65}
         handleWidth={80}
+        // taskHeight={"30"}
         // ganttHeight={500}
-        barCornerRadius={8}
+        // barCornerRadius={8}
+        fontSize={"14"}
       />
     </div>
   );
