@@ -7,12 +7,13 @@ const GanttChart = () => {
     {
       start: new Date(2024, 6, 25),
       end: new Date(2024, 7, 12),
-      name: "Idea",
+      project: "Project A",
+      name: "Some Project",
       id: "Task 0",
-      type: "task",
+      type: "project",
       progress: 45,
-      isDisabled: true,
-      styles: { progressColor: "#ffbb54" },
+      isDisabled: false,
+      hideChildren: true,
     },
     {
       start: new Date(2024, 6, 25),
@@ -21,20 +22,20 @@ const GanttChart = () => {
       id: "Task 1",
       type: "task",
       progress: 45,
-      isDisabled: true,
+      isDisabled: false,
+      hideChildren: true,
       dependencies: ["Task 0"],
-      styles: { progressColor: "#ffbb54" },
     },
     {
       start: new Date(2024, 6, 29),
       end: new Date(2024, 7, 1),
       name: "Idea 3",
       id: "Task 2",
-      type: "task",
+      type: "project",
       progress: 100,
       isDisabled: true,
-      dependencies: ["Task 0"],
-      styles: { progressColor: "#ffbb54" },
+      hideChildren: true,
+      dependencies: ["Task 1"],
     },
   ]);
 
@@ -57,7 +58,7 @@ const GanttChart = () => {
       } else if (isEndDateBeforeToday(task.end)) {
         updatedStyles = { ...updatedStyles, progressColor: "red" };
       } else {
-        updatedStyles = { ...updatedStyles, progressColor: "#ffbb54" }; // Default color
+        updatedStyles = { ...updatedStyles, progressColor: "#6EACDA" }; // Default color
       }
 
       return { ...task, styles: updatedStyles };
@@ -94,6 +95,15 @@ const GanttChart = () => {
         onProgressChange={onProgressChange}
         onDoubleClick={onDblClick}
         onClick={onClick}
+        preStepsCount={2}
+        barProgressColor={"black"}
+        arrowColor={"red"}
+        todayColor={"blue"}
+        barFill={100}
+        // columnWidth={100}
+        handleWidth={80}
+        // ganttHeight={500}
+        barCornerRadius={8}
       />
     </div>
   );
