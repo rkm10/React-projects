@@ -131,7 +131,7 @@ const GanttChart = () => {
       type: "task",
       id: "Task 8",
       displayOrder: 10,
-      progress: 45,
+      progress: 100,
       isDisabled: true,
       dependencies: ["Task 6"],
     },
@@ -149,7 +149,7 @@ const GanttChart = () => {
   // Function to update task styles based on progress and end date
   const getUpdatedTaskStyles = (task: Task) => {
     if (task.progress === 100) {
-      return { ...task.styles, progressColor: "green" };
+      return { ...task.styles, progressColor: "#88D66C" };
     } else if (isEndDateBeforeToday(task.end)) {
       return { ...task.styles, progressColor: "red" };
     } else {
@@ -210,8 +210,8 @@ const GanttChart = () => {
         onClick={onClick}
         preStepsCount={2}
         barProgressColor={"black"}
-        arrowColor={"red"}
-        todayColor={"blue"}
+        arrowColor={"#102C57"}
+        todayColor={"#BB9AB1"}
         arrowIndent={20}
         barFill={60}
         rowHeight={50}
