@@ -6,36 +6,74 @@ const GanttChart = () => {
   const [tasks, setTasks] = useState<Task[]>([
     {
       start: new Date(2024, 6, 25),
-      end: new Date(2024, 7, 12),
-      project: "Project A",
+      end: new Date(2024, 7, 29),
       name: "Some Project",
-      id: "Task 0",
+      id: "ProjectSample",
       type: "project",
+      displayOrder: 1,
       progress: 45,
       isDisabled: false,
-      hideChildren: true,
+      hideChildren: false,
     },
     {
-      start: new Date(2024, 6, 25),
-      end: new Date(2024, 7, 2),
+      start: new Date(2024, 6, 28),
+      end: new Date(2024, 7, 8),
       name: "Idea 2",
-      id: "Task 1",
+      project: "ProjectSample",
       type: "project",
+      id: "PreProposal",
+      displayOrder: 2,
       progress: 45,
-      isDisabled: false,
-      // hideChildren: false,
-      dependencies: ["Task 0"],
+      isDisabled: true,
+      hideChildren: false,
     },
     {
       start: new Date(2024, 6, 29),
-      end: new Date(2024, 7, 1),
-      name: "Idea 3",
-      id: "Task 2",
-      type: "project",
-      progress: 100,
+      end: new Date(2024, 7, 8),
+      name: "Idea's",
+      project: "PreProposal",
+      type: "task",
+      id: "Task 1",
+      displayOrder: 3,
+      progress: 45,
       isDisabled: true,
-      // hideChildren: true,
+      dependencies: ["PreProposal"],
+    },
+    {
+      start: new Date(2024, 7, 1),
+      end: new Date(2024, 7, 3),
+      name: "Idea's ",
+      project: "ProjectSample",
+      type: "task",
+      id: "Task 2",
+      displayOrder: 4,
+      progress: 45,
+      isDisabled: true,
       dependencies: ["Task 1"],
+    },
+    {
+      start: new Date(2024, 7, 4),
+      end: new Date(2024, 7, 8),
+      name: "Idea's",
+      project: "ProjectSample",
+      type: "task",
+      id: "Task 3",
+      displayOrder: 5,
+      progress: 45,
+      isDisabled: true,
+      dependencies: ["Task 2"],
+    },
+    {
+      start: new Date(2024, 7, 2),
+      end: new Date(2024, 7, 6),
+      name: "Idea's",
+      project: "ProjectSample",
+      type: "task",
+      id: "Task 4",
+      displayOrder: 5,
+      progress: 45,
+      isDisabled: true,
+      dependencies: ["Task 2"],
     },
   ]);
 
@@ -48,32 +86,38 @@ const GanttChart = () => {
     return endDate < today;
   };
 
-  // Update task styles based on progress and end date
+  // Function to update task styles based on progress and end date
+  const getUpdatedTaskStyles = (task: Task) => {
+    if (task.progress === 100) {
+      return { ...task.styles, progressColor: "green" };
+    } else if (isEndDateBeforeToday(task.end)) {
+      return { ...task.styles, progressColor: "red" };
+    } else {
+      return { ...task.styles, progressColor: "#6EACDA" }; // Default color
+    }
+  };
+
   useEffect(() => {
-    const updatedTasks = tasks.map((task) => {
-      let updatedStyles = { ...task.styles };
-
-      if (task.progress === 100) {
-        updatedStyles = { ...updatedStyles, progressColor: "green" };
-      } else if (isEndDateBeforeToday(task.end)) {
-        updatedStyles = { ...updatedStyles, progressColor: "red" };
-      } else {
-        updatedStyles = { ...updatedStyles, progressColor: "#6EACDA" }; // Default color
-      }
-
-      return { ...task, styles: updatedStyles };
-    });
-    setTasks(updatedTasks);
-  }, [tasks]);
+    setTasks((prevTasks) =>
+      prevTasks.map((task) => ({
+        ...task,
+        styles: getUpdatedTaskStyles(task),
+      }))
+    );
+  }, []);
 
   const onTaskChange = (task: Task) => {
     // Handle task date changes
-    setTasks(tasks.map((t) => (t.id === task.id ? task : t)));
+    setTasks((prevTasks) =>
+      prevTasks.map((t) => (t.id === task.id ? { ...t, ...task } : t))
+    );
   };
 
   const onProgressChange = (task: Task) => {
     // Handle progress changes
-    setTasks(tasks.map((t) => (t.id === task.id ? task : t)));
+    setTasks((prevTasks) =>
+      prevTasks.map((t) => (t.id === task.id ? { ...t, ...task } : t))
+    );
   };
 
   const onDblClick = (task: Task) => {
@@ -84,6 +128,15 @@ const GanttChart = () => {
   const onClick = (task: Task) => {
     // Handle single click on task
     console.log("Task clicked:", task);
+  };
+
+  const onExpanderClick = (task: Task) => {
+    // Toggle the hideChildren property for the clicked project
+    setTasks((prevTasks) =>
+      prevTasks.map((t) =>
+        t.id === task.id ? { ...t, hideChildren: !t.hideChildren } : t
+      )
+    );
   };
 
   return (
@@ -99,15 +152,18 @@ const GanttChart = () => {
         barProgressColor={"black"}
         arrowColor={"red"}
         todayColor={"blue"}
-        arrowIndent={10}
+        arrowIndent={20}
         barFill={60}
         rowHeight={50}
         columnWidth={65}
-        handleWidth={80}
+        handleWidth={8}
         // taskHeight={"30"}
         // ganttHeight={500}
         // barCornerRadius={8}
         fontSize={"14"}
+        // rtl={false}
+        timeStep={1000 * 60 * 60 * 24}
+        onExpanderClick={onExpanderClick}
       />
     </div>
   );
