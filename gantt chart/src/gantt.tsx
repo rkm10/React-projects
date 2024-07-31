@@ -88,8 +88,8 @@ const GanttChart = () => {
       hideChildren: false,
     },
     {
-      start: new Date(2024, 6, 29),
-      end: new Date(2024, 7, 8),
+      start: new Date(2024, 6, 28),
+      end: new Date(2024, 6, 30),
       name: "Idea's",
       project: "Proposal",
       type: "task",
@@ -149,7 +149,7 @@ const GanttChart = () => {
   // Function to update task styles based on progress and end date
   const getUpdatedTaskStyles = (task: Task) => {
     if (task.progress === 100) {
-      return { ...task.styles, progressColor: "#88D66C" };
+      return { ...task.styles, progressColor: "#80AF81" };
     } else if (isEndDateBeforeToday(task.end)) {
       return { ...task.styles, progressColor: "red" };
     } else {
@@ -209,7 +209,9 @@ const GanttChart = () => {
         onDoubleClick={onDblClick}
         onClick={onClick}
         preStepsCount={2}
-        barProgressColor={"black"}
+        // barProgressColor={"#6EACDA"}
+        // barProgressColor={"black"}
+        barBackgroundSelectedColor={"#053B50"}
         arrowColor={"#102C57"}
         todayColor={"#BB9AB1"}
         arrowIndent={20}
