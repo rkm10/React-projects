@@ -91,7 +91,7 @@ const GanttChart = () => {
       start: new Date(2024, 6, 29),
       end: new Date(2024, 7, 8),
       name: "Idea's",
-      project: "PreProposal",
+      project: "Proposal",
       type: "task",
       id: "Task 5",
       displayOrder: 7,
