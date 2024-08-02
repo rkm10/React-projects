@@ -208,12 +208,12 @@ const GanttChart = () => {
         onProgressChange={onProgressChange}
         onDoubleClick={onDblClick}
         onClick={onClick}
-        preStepsCount={2}
+        // preStepsCount={2}
         // barProgressColor={"#6EACDA"}
         // barProgressColor={"black"}
         barBackgroundSelectedColor={"#053B50"}
         arrowColor={"#102C57"}
-        todayColor={"#BB9AB1"}
+        todayColor={"#feffd25c"}
         arrowIndent={20}
         barFill={60}
         rowHeight={50}
