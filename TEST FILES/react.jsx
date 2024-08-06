@@ -55,3 +55,22 @@
         ></div>
     </div>
 </div>
+
+
+//Drop down
+const handleSelect = (value) => {
+    console.log('Selected:', value);
+    switch (value) {
+        case Pending:
+            return setBackgroundColors('linear-gradient(90deg, rgba(187,45,45,1) 22%, rgba(6,45,65,1) 53%, rgba(6,84,92,1) 100%)');
+        case Review:
+            return setBackgroundColors('linear-gradient(90deg, rgba(180,187,45,1) 22%, rgba(6,45,65,1) 76%, rgba(6,84,92,1) 100%)');
+        case Completed:
+            return setBackgroundColors('linear-gradient(90deg, rgba(14,129,221,1) 22%, rgba(6,45,65,1) 76%, rgba(6,84,92,1) 100%)');
+        case Cancelled:
+            return setBackgroundColors('linear-gradient(90deg, rgba(187,45,45,1) 22%, rgba(6,45,65,1) 53%, rgba(6,84,92,1) 100%)');
+
+        default:
+            return setBackgroundColors('#06545c');
+    }
+};
