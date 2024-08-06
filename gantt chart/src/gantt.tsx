@@ -12,7 +12,7 @@ const GanttChart = () => {
       type: "project",
       displayOrder: 1,
       progress: 45,
-      isDisabled: false,
+      isDisabled: true,
       hideChildren: false,
     },
     {
@@ -187,6 +187,7 @@ const GanttChart = () => {
 
   const onClick = (task: Task) => {
     // Handle single click on task
+
     console.log("Task clicked:", task);
   };
 
