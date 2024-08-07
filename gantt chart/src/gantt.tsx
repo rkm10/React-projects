@@ -132,7 +132,7 @@ const GanttChart = () => {
       id: "Task 8",
       displayOrder: 10,
       progress: 100,
-      isDisabled: true,
+      isDisabled: false,
       dependencies: ["Task 6"],
     },
   ]);
