@@ -182,7 +182,7 @@ const GanttChart = () => {
 
   const onDblClick = (task: Task) => {
     // Handle double click on task
-    // console.log("Task double clicked:", task);
+    console.log("Task double clicked:", task);
   };
 
   const onClick = (task: Task) => {
