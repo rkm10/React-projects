@@ -1,0 +1,327 @@
+import React, { useEffect, useState } from 'react';
+import { IconPaperclip, IconMessages } from '@tabler/icons-react';
+import { FaCheck, FaRegClock } from 'react-icons/fa';
+import { IoMdClose } from 'react-icons/io';
+import styled from 'styled-components';
+import AcquisitionsDetails from './AcquisitionsDetails';
+import { IoIosArrowDown, IoIosArrowUp } from 'react-icons/io';
+import { useLocation, useNavigate } from 'react-router';
+import AcquisitionsChat from './AcquisitionsChat';
+import Modal from 'react-modal';
+import AcquisitionsAlert from './AcquisitionsAlert';
+import { getDataBasedOnTeam } from './AcquisitionsApi';
+import './Acquisitions.css';
+import 'land-acquisition/src/Routes/Acquisitions/assests/blue.png';
+import 'land-acquisition/src/Routes/Acquisitions/assests/green.png';
+import 'land-acquisition/src/Routes/Acquisitions/assests/red.png';
+import 'land-acquisition/src/Routes/Acquisitions/assests/yellow.png';
+
+// Styled component for individual task items
+const StyledDiv = styled.div`
+height: 4rem;
+margin-top: 1rem;
+border-radius: 99px;
+display: flex;
+justify-content: space-around;
+align-items: center;
+color: white;
+cursor: pointer;
+transition: background-color 0.3s;
+`;
+
+Modal.setAppElement('#root');
+
+function AcquisitionPopUp() {
+const location = useLocation();
+const { selectedTask, name } = location.state || {};
+const [selectedSection, setSelectedSection] = useState("Pre-Proposal");
+const [preProposals, setPreProposals] = useState([]);
+const [currentContent, setCurrentContent] = useState(selectedTask);
+const [expandStates, setExpandStates] = useState({});
+const [showChat, setShowChat] = useState(false);
+const [activeChatName, setActiveChatName] = useState("");
+const [showModal, setShowModal] = useState(false);
+const [color, setColor] = useState('');
+const [taskStatus, setTaskStatus] = useState('');
+const [backgroundColors, setBackgroundColors] = useState(() => {
+const storedColors = localStorage.getItem('backgroundColors');
+return storedColors ? JSON.parse(storedColors) : {};
+});
+const [taskName, setTaskName] = useState('');
+const [settinName, setSettinName] = useState('');
+const [taskData, setTaskData] = useState([]);
+const [activeBtn, setActiveBtn] = useState('Pre Proposal');
+
+const navigate = useNavigate();
+
+useEffect(() => {
+if (selectedTask) {
+setCurrentContent(selectedTask); // Initialize currentContent with selectedTask
+}
+}, [selectedTask]);
+
+const team = localStorage.getItem('team');
+const projectId = name;
+const stages = "Pre Proposal";
+
+useEffect(() => {
+fetchData(team, projectId, stages);
+}, [team, projectId, stages]);
+
+const fetchData = async (team, projectId, stages) => {
+try {
+let res = await getDataBasedOnTeam(team, projectId, stages);
+let data = res.data.message;
+setTaskData(data);
+console.log('API Response:', data);
+} catch (error) {
+console.error('Error fetching data:', error);
+}
+};
+
+const handleAddressClick = (task) => {
+if (task && Array.isArray(task.depends_on_tasks_data)) {
+const tasksData = task.depends_on_tasks_data;
+setPreProposals(tasksData);
+setCurrentContent(tasksData); // Replace selectedTask with preProposals
+} else {
+console.error("Invalid data format for depends_on_tasks_data", task);
+setPreProposals([]);
+setCurrentContent(selectedTask); // Reset to selectedTask if data is invalid
+}
+};
+
+const getNewToggleState = (status) => {
+switch (status) {
+case 'open':
+return 'middle';
+case 'completed':
+return 'left';
+case 'canceled':
+return 'right';
+default:
+return 'middle';
+}
+};
+
+const handleToggle = (index) => {
+setCurrentContent((prevContent) => {
+let updatedContent;
+if (Array.isArray(prevContent)) {
+updatedContent = [...prevContent];
+} else {
+updatedContent = [prevContent];
+}
+
+const item = updatedContent[index];
+item.status = item.status === 'completed' ? 'open' : item.status === 'open' ? 'canceled' : 'completed';
+return updatedContent;
+});
+};
+
+const handleExpandToggle = (name) => {
+setExpandStates((prevStates) => ({
+...prevStates,
+[name]: !prevStates[name]
+}));
+};
+
+const openChat = (name) => {
+setActiveChatName(name);
+setShowChat(true);
+};
+
+const handleModal = (color, status, name) => {
+setColor(color);
+setTaskStatus(status)
+setSettinName(name);
+setShowModal(true);
+};
+
+const updateColor = (color, taskName) => {
+setBackgroundColors((prevColors) => {
+const newColors = { ...prevColors, [taskName]: color };
+localStorage.setItem('backgroundColors', JSON.stringify(newColors));
+return newColors;
+});
+};
+
+const handleSubmit = async () => {
+console.log('Submitting updated statuses:', taskData);
+try {
+await Promise.all(taskData.map(task => updateDataBasedOnTeam));
+alert('Statuses updated successfully');
+} catch (error) {
+console.error('Error updating statuses:', error);
+alert('Failed to update statuses');
+}
+};
+
+return (
+<>
+    <div style={{ position: 'absolute' , top: '0rem' , width: '100%' , height: '100%' , boxSizing: 'border-box' ,
+        backgroundColor: 'white' , borderRadius: '8px' , boxShadow: '0 4px 8px rgba(0, 0, 0, 0.1)' , }}>
+        <button style={{ position: 'absolute' , top: '1rem' , right: '1.5rem' , borderRadius: '38px' ,
+            padding: '0.3rem 1.2rem' , backgroundColor: '#ff0000' , color: '#fff' , border: 'none' , cursor: 'pointer' ,
+            }} onClick={()=> navigate(-1)}
+            >
+            Back
+        </button>
+        <div style={{ display: 'flex' , height: '100%' , opacity: showChat || showModal ? 0.5 : 1 }}>
+            <div style={{ width: '30%' , backgroundColor: '#016e79' , padding: '1rem' , boxSizing: 'border-box' ,
+                display: 'flex' , flexDirection: 'column' , justifyContent: 'center' , }}>
+                <button className='btn' style={{ backgroundColor: activeBtn==="Pre Proposal" ? "black" : '' }}
+                    onClick={()=> {
+                    setSelectedSection("Pre Proposal");
+                    setActiveBtn("Pre Proposal");
+                    fetchData(team, projectId, "Pre Proposal");
+                    if (selectedTask && selectedTask.depends_on_tasks_data) {
+                    handleAddressClick(selectedTask.depends_on_tasks_data[0]);
+                    }
+                    }}
+                    >
+                    Pre-Proposal
+                </button>
+                <div style={{ fontWeight: "bold" }}>Proposal</div>
+                <div style={{ display: 'flex' , justifyContent: 'space-between' }}>
+                    <button className='btn' style={{ width: '48%' , height: '4rem' , backgroundColor:
+                        activeBtn==="Option" ? "black" : '' }} onClick={()=> {
+                        setSelectedSection("Option");
+                        setActiveBtn("Option");
+                        fetchData(team, projectId, "Option");
+                        if (selectedTask && selectedTask.depends_on_tasks_data)
+                        handleAddressClick(selectedTask.depends_on_tasks_data[1].depends_on_tasks_data[0]);
+                        }}
+                        >
+                        Option Period
+                    </button>
+                    <button className='btn' style={{ width: '48%' , height: '4rem' , backgroundColor:
+                        activeBtn==="Contract" ? "black" : '' }} onClick={()=> {
+                        setSelectedSection("Contract");
+                        setActiveBtn("Contract");
+                        fetchData(team, projectId, "Contract");
+                        if (selectedTask && selectedTask.depends_on_tasks_data)
+                        handleAddressClick(selectedTask.depends_on_tasks_data[1].depends_on_tasks_data[1]);
+                        }}
+                        >
+                        Contract Period
+                    </button>
+                </div>
+            </div>
+            <div style={{ width: '75%' , padding: '1rem' , boxSizing: 'border-box' , backgroundColor: "#333" ,
+                borderRadius: '8px' , boxShadow: '0 4px 8px rgba(0, 0, 0, 0.1)' , display: 'flex' ,
+                flexDirection: 'column' , justifyContent: 'center' , }}>
+                <div style={{ textAlign: 'center' , fontWeight: 'bold' , fontSize: '1.2rem' , marginBottom: '1rem' ,
+                    color: 'white' }}>
+                    Pre-Proposals
+                </div>
+                {preProposals.length > 0 ? (
+                preProposals.map((task, index) => (
+                <StyledDiv key={index} style={{ backgroundColor: backgroundColors[task.name] || '#222' , }}
+                    onClick={()=> handleAddressClick(task)}
+                    >
+                    <div style={{ width: '10%' , textAlign: 'center' , fontWeight: 'bold' }}>{task.id}</div>
+                    <div style={{ width: '40%' , fontWeight: 'bold' }}>{task.name}</div>
+                    <div style={{ width: '20%' , textAlign: 'center' , fontWeight: 'bold' }}>
+                        <select value={task.status} onChange={(e)=> {
+                            task.status = e.target.value;
+                            setTaskStatus(e.target.value);
+                            }}
+                            style={{ border: 'none', outline: 'none', backgroundColor: 'transparent', color: 'white' }}
+                            >
+                            <option value=''>
+                                <FaRegClock /> Open
+                            </option>
+                            <option value='in progress'>
+                                <IconPaperclip /> In Progress
+                            </option>
+                            <option value='completed'>
+                                <FaCheck /> Completed
+                            </option>
+                            <option value='canceled'>
+                                <IoMdClose /> Canceled
+                            </option>
+                        </select>
+                    </div>
+                    <div style={{ width: '10%' , textAlign: 'center' , cursor: 'pointer' }} onClick={()=>
+                        handleToggle(index)}>
+                        {task.status === 'completed' ?
+                        <FaCheck /> : task.status === 'canceled' ?
+                        <IoMdClose /> :
+                        <FaRegClock />}
+                    </div>
+                    <div style={{ width: '10%' , textAlign: 'center' , cursor: 'pointer' }} onClick={()=>
+                        handleExpandToggle(task.name)}>
+                        {expandStates[task.name] ?
+                        <IoIosArrowUp /> :
+                        <IoIosArrowDown />}
+                    </div>
+                    {expandStates[task.name] && (
+                    <div style={{ width: '100%' , padding: '1rem' , boxSizing: 'border-box' , backgroundColor: '#555' ,
+                        borderRadius: '8px' , marginTop: '1rem' , }}>
+                        <AcquisitionsDetails details={task} />
+                    </div>
+                    )}
+                </StyledDiv>
+                ))
+                ) : (
+                <div style={{ textAlign: 'center' , color: 'white' }}>No pre-proposals available.</div>
+                )}
+            </div>
+        </div>
+        {showChat && <AcquisitionsChat name={activeChatName} closeChat={()=> setShowChat(false)} />}
+            {showModal && (
+            <Modal isOpen={showModal} onRequestClose={()=> setShowModal(false)}
+                contentLabel="Task Modal"
+                style={{
+                content: {
+                top: '50%',
+                left: '50%',
+                right: 'auto',
+                bottom: 'auto',
+                marginRight: '-50%',
+                transform: 'translate(-50%, -50%)',
+                width: '40%',
+                padding: '2rem',
+                borderRadius: '8px',
+                boxShadow: '0 4px 8px rgba(0, 0, 0, 0.1)',
+                border: 'none',
+                },
+                overlay: {
+                backgroundColor: 'rgba(0, 0, 0, 0.75)',
+                },
+                }}
+                >
+                <h2 style={{ marginBottom: '1rem' }}>Update Task</h2>
+                <div style={{ marginBottom: '1rem' }}>
+                    <label style={{ marginRight: '1rem' }}>Color:</label>
+                    <input type="color" value={color} onChange={(e)=> setColor(e.target.value)} />
+                </div>
+                <div style={{ marginBottom: '1rem' }}>
+                    <label style={{ marginRight: '1rem' }}>Status:</label>
+                    <select value={taskStatus} onChange={(e)=> setTaskStatus(e.target.value)}>
+                        <option value='open'>Open</option>
+                        <option value='in progress'>In Progress</option>
+                        <option value='completed'>Completed</option>
+                        <option value='canceled'>Canceled</option>
+                    </select>
+                </div>
+                <button onClick={()=> {
+                    updateColor(color, settinName);
+                    setShowModal(false);
+                    }} style={{
+                    padding: '0.5rem 1rem',
+                    backgroundColor: '#007bff',
+                    color: '#fff',
+                    border: 'none',
+                    borderRadius: '4px',
+                    cursor: 'pointer',
+                    }}>Update</button>
+            </Modal>
+            )}
+    </div>
+</>
+);
+}
+
+export default AcquisitionPopUp;
