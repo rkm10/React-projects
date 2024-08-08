@@ -1,5 +1,5 @@
 import { useState } from 'react'
-import GanttChart from './gantt'
+import GanttChart from './Gantt';
 
 function App() {
 
