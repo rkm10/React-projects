@@ -90,7 +90,7 @@ const GanttChart = () => {
         console.log('API Response:', data);
     }
 
-
+    //use memo or use callback
 
 
 
