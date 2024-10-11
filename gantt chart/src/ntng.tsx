@@ -76,7 +76,7 @@ interface CustomTask extends Task {
 
 const GanttChart = () => {
 
-    const [details, setDetails] = useState([])
+    const [details, setDetails] = useState()
 
     useEffect(() => {
         fetchData();
@@ -89,11 +89,6 @@ const GanttChart = () => {
         setDetails(data)
         console.log('API Response:', data);
     }
-
-    //use memo or use callback
-
-
-
 
     const [tasks, setTasks] = useState<CustomTask[]>([
         // Add the tasks here
@@ -440,12 +435,3 @@ const GanttChart = () => {
 };
 
 export default GanttChart;
-
-
-
-
-end = expected_end_date || team_end_date || stage_end_date
-start = expected_start_date || team_start_date || stage_start_date
-progress = team_progress || stage_progress || task_progress
-name = project_name || subject
-
