@@ -1,16 +1,9 @@
 import * as React from 'react';
-import Box from '@mui/material/Box';
-import Avatar from '@mui/material/Avatar';
+import Button from '@mui/material/Button';
 import Menu from '@mui/material/Menu';
 import MenuItem from '@mui/material/MenuItem';
-import ListItemIcon from '@mui/material/ListItemIcon';
-import Divider from '@mui/material/Divider';
-import IconButton from '@mui/material/IconButton';
-import Typography from '@mui/material/Typography';
-import Tooltip from '@mui/material/Tooltip';
-import PersonAdd from '@mui/icons-material/PersonAdd';
-import Settings from '@mui/icons-material/Settings';
-import Logout from '@mui/icons-material/Logout';
+import Fade from '@mui/material/Fade';
+import { Avatar } from '@mui/material';
 import MenuIcon from '@mui/icons-material/Menu';
 
 export default function AccountMenu() {
@@ -22,88 +15,34 @@ export default function AccountMenu() {
   const handleClose = () => {
     setAnchorEl(null);
   };
+
   return (
     <>
-      <Box sx={{ display: 'flex', alignItems: 'center', textAlign: 'center' }}>
-        <Typography sx={{ minWidth: 100 }}>Contact</Typography>
-        <Typography sx={{ minWidth: 100 }}>Profile</Typography>
-        <Tooltip title="Account settings" color='white'sx={{color:'white'}}>
-          <IconButton
-            onClick={handleClick}
-            // size="small"
-            sx={{ ml: 2 , p:2}}
-            aria-controls={open ? 'account-menu' : undefined}
-            aria-haspopup="true"
-            aria-expanded={open ? 'true' : undefined}
-            
-          >
-            <MenuIcon fontSize='small' sx={{pr:2}}/>
-            <Avatar sx={{ width: 32, height: 32 , color:'white' }}></Avatar>
-          </IconButton>
-        </Tooltip>
-      </Box>
+      
+      <Button
+        id="fade-button"
+        aria-controls={open ? 'fade-menu' : undefined}
+        aria-haspopup="true"
+        aria-expanded={open ? 'true' : undefined}
+        onClick={handleClick}
+        sx={{ borderRadius: "50%" ,  height: "50px", padding: "10px", border: "1px solid black", display: "flex", alignItems: "center" }}
+      >
+        <MenuIcon sx={{ fill: "black" , pr: 2, fontSize: "20px"}}/>
+        <Avatar sx={{ width: "32px", height: "32px"}}/>
+      </Button>
       <Menu
+        id="fade-menu"
+        MenuListProps={{
+          'aria-labelledby': 'fade-button',
+        }}
         anchorEl={anchorEl}
-        id="account-menu"
         open={open}
         onClose={handleClose}
-        onClick={handleClose}
-        slotProps={{
-          // paper: {
-          //   // elevation: 0,
-          //   // sx: {
-          //   //   overflow: 'visible',
-          //   //   filter: 'drop-shadow(0px 2px 8px rgba(0,0,0,0.32))',
-          //   //   mt: 1.5,
-          //   //   '& .MuiAvatar-root': {
-          //   //     width: 32,
-          //   //     height: 32,
-          //   //     ml: -0.5,
-          //   //     mr: 1,
-          //   //   },
-          //   //   '&::before': {
-          //   //     content: '""',
-          //   //     display: 'block',
-          //   //     position: 'absolute',
-          //   //     top: 0,
-          //   //     right: 14,
-          //   //     width: 10,
-          //   //     height: 10,
-          //   //     bgcolor: 'background.paper',
-          //   //     transform: 'translateY(-50%) rotate(45deg)',
-          //   //     zIndex: 0,
-          //   //   },
-          //   // },
-          // },
-        }}
-        transformOrigin={{ horizontal: 'right', vertical: 'top' }}
-        anchorOrigin={{ horizontal: 'right', vertical: 'bottom' }}
+        TransitionComponent={Fade}
       >
-        <MenuItem onClick={handleClose}>
-          <Avatar /> Profile
-        </MenuItem>
-        <MenuItem onClick={handleClose}>
-          <Avatar /> My account
-        </MenuItem>
-        <Divider />
-        <MenuItem onClick={handleClose}>
-          <ListItemIcon>
-            <PersonAdd fontSize="small" />
-          </ListItemIcon>
-          Add another account
-        </MenuItem>
-        <MenuItem onClick={handleClose}>
-          <ListItemIcon>
-            <Settings fontSize="small" />
-          </ListItemIcon>
-          Settings
-        </MenuItem>
-        <MenuItem onClick={handleClose}>
-          <ListItemIcon>
-            <Logout fontSize="small" />
-          </ListItemIcon>
-          Logout
-        </MenuItem>
+        <MenuItem onClick={handleClose}>Profile</MenuItem>
+        <MenuItem onClick={handleClose}>My account</MenuItem>
+        <MenuItem onClick={handleClose}>Logout</MenuItem>
       </Menu>
     </>
   );
